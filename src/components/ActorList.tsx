@@ -7,7 +7,7 @@ type Actor = {
     character?: string;
   }
 
-  export default function ActorList(props: {title: String, list: Actor[]}) {
+  export default function ActorList(props: {title: string, list: Actor[]}) {
     return (
       <div className="flex flex-col w-full">
         <h2 className="text-2xl font-bold mb-6 text-white">{props.title}</h2>

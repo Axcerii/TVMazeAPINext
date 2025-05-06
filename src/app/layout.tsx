@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="fr">
       <body className={inter.className}>
         <header className="bg-[var(--primary)] text-white px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
-          <Link href="/" className="text-xl font-bold hover:underline">TVMaze Explorer</Link>
+          <Link href="/" className="text-xl font-bold hover:underline">Vouatch</Link>
 
           <form
             action="/search"

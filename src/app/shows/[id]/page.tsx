@@ -23,6 +23,11 @@ type Show = {
     name: string;
     season: number;
     number: number;
+    image: {
+      medium: string;
+      original: string;
+    } | null;
+    summary: string;
   };
   
   export default async function ShowDetailPage({ params }: { params: { id: string } }) {
@@ -51,10 +56,10 @@ type Show = {
   
     return (
       <main className="p-8 text-white">
-        <h1 className="text-4xl font-bold mb-4">{show.name}</h1>
+        <h1 className="text-4xl font-bold mb-4 text-center">{show.name}</h1>
   
         {show.image && (
-          <img src={show.image.original} alt={show.name} className="mb-4 rounded-lg w-9/10 md:w-1/2 mx-auto" />
+          <img src={show.image.original} alt={show.name} className="mb-4 rounded-lg w-9/10 md:w-1/2 lg:w-1/4 mx-auto" />
         )}
   
         <div className="mx-auto lg:w-2/3 mb-8">
@@ -71,13 +76,23 @@ type Show = {
         {Object.entries(episodesBySeason).map(([season, eps]) => (
           <div key={season} className="mb-4">
             <details>
-              <summary className="text-xl font-semibold">
+              <summary className="text-xl font-semibold cursor-pointer">
                 Saison {season}
               </summary>
-              <ul className="list-disc list-inside pl-4">
+              <ul className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
                 {eps.map(ep => (
-                  <li key={ep.id}>
-                    Episode {ep.number}: {ep.name}
+                  <li key={ep.id} className="episode mb-2 relative cursor-help">
+                    {ep.image ? (
+                        <img src={ep.image.medium} alt={ep.name} className="aspect-square w-full object-cover flex-shrink-0"/>
+                      ) : (
+                        <img src="https://placehold.co/350x350/DD3030/FFF?text=🚫" alt={ep.name} />
+                      )}
+                    <p className="absolute bottom-0 left-0 p-2 bg-[#00000080] text-white w-full">
+                      E.{ep.number} - {ep.name}
+                    </p>
+                    <div className="opacity-0 summary group-hover:opacity-100 transition duration-300 absolute bottom-0 left-0 p-2 bg-[#000000DD] text-white w-full h-full overflow-y-auto">
+                      <p dangerouslySetInnerHTML={{ __html: ep.summary }}></p>
+                    </div>
                   </li>
                 ))}
               </ul>

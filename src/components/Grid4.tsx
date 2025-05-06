@@ -6,13 +6,6 @@ type Show = {
   image: string | null;
 }
 
-type ShowList = [
-  card1: Show,
-  card2: Show,
-  card3: Show,
-  card4: Show
-]
-
 type GridShow = {
     title: string,
     showList: any
@@ -21,9 +14,9 @@ type GridShow = {
 
   export default function Grid4({title, showList}: GridShow) {
     return (
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full mx-auto">
         <h2 className="text-2xl font-bold mb-6 text-white">{title}</h2>
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-2">
           {showList.map((card : Show) => (
             <ShowCard
               key={card.id}

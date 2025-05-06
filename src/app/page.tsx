@@ -2,9 +2,9 @@ import Grid4 from '@/components/Grid4';
 import ActorList from '@/components/ActorList';
 
 export default async function Home() {
-  const shows = await fetch('https://api.tvmaze.com/shows?page=1').then(res => res.json());
+  const shows = await fetch('https://api.tvmaze.com/shows?page=0').then(res => res.json());
 
-  const tenActors = (await fetch('https://api.tvmaze.com/people?page=1').then(res => res.json())).splice(0, 10);
+  const tenActors = (await fetch('https://api.tvmaze.com/people?page=0').then(res => res.json())).splice(0, 10);
 
   const lastShow = shows.slice(0, 4).map((show: any) => ({
     id: show.id,
@@ -33,13 +33,13 @@ export default async function Home() {
   
   return (
     <main className="p-8">
-      <div className='flex flex-col gap-4 mx-auto w-9/10 md:w-3/4 lg:w-1/3'>
+      <div className='flex flex-col gap-4 mx-auto w-9/10 md:w-3/4 lg:flex-row my-8 lg:gap-16'>
         <Grid4 title="Nos dernières séries" showList={lastShow} />
         <hr className='my-4 text-white' />
         <Grid4 title="Des Séries Aléatoires" showList={randomShow} />
         <hr className='my-4 text-white' />
       </div>
-      <div className='flex flex-col gap-4 mx-auto w-9/10'>
+      <div className='flex flex-col gap-4 mx-auto w-9/10 lg:w-3/4'>
         <ActorList title="Quelques Acteurs" list={lastActors} />
       </div>
     </main>
@@ -62,7 +62,8 @@ async function fetchRandomShow() {
       if (data && data.id && data.name) {
         show = data;
       }
-    } catch (err) {
+    } catch (error) {
+      console.error(error);
     }
   } while (!show);
 

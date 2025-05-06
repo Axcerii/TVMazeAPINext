@@ -9,7 +9,7 @@ type ActorCard = {
     return (
       <a
         href={`/actors/${id}`}
-        className="bg-[var(--secondary)] shadow hover:shadow-lg transition block relative w-52 p-4 my-4 flex-shrink-0 rounded-lg border border-solid border-white"
+        className="bg-[var(--secondary)] shadow hover:scale-105 transition block relative w-52 p-4 my-4 flex-shrink-0 rounded-lg border border-solid border-white"
       >
 
         {image ? (

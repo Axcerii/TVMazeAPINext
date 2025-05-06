@@ -37,7 +37,7 @@ type SearchResult = {
         ) : (
           <div className="flex flex-col gap-6 w-full mx-auto md:w-2/3">
             {results.map(({ show }) => (
-              <a href={`/shows/${show.id}`} key={show.id} className="flex rounded-xl shadow p-3 hover:shadow-lg transition w-full gap-6  border border-solid border-white">
+              <a href={`/shows/${show.id}`} key={show.id} className="flex rounded-xl shadow p-3 hover:bg-[#000000] hover:scale-105 transition w-full gap-6  border border-solid border-white">
                 {show.image ? (
                   <img
                     src={show.image.medium}
